@@ -100,36 +100,40 @@ export default function Home() {
             />
           </div>
         </section>
-        <section className="flex flex-col w-full gap-2 justify-center items-start">
-          <h3 className="text-2xl font-semibold">Folders</h3>
-          <div className="grid gap-2 custom-grid-columns w-full">
-            {folderData.map((item, i) => (
-              <div
-                onDoubleClick={() => router.push(`/folder/${item.id}`)}
-                key={item.id}
-                className="p-2 px-4 flex gap-4 rounded-md my-shadow-md justify-start items-center cursor-pointer"
-              >
-                <div className="rounded-full h-10 w-10 text-xl p-2 flex justify-center items-center bg-gray-100">
-                  <AiTwotoneFolderAdd />
+        {folderData.length > 0 && (
+          <section className="flex flex-col w-full gap-2 justify-center items-start">
+            <h3 className="text-2xl font-semibold">Folders</h3>
+            <div className="grid gap-2 custom-grid-columns w-full">
+              {folderData.map((item, i) => (
+                <div
+                  onDoubleClick={() => router.push(`/folder/${item.id}`)}
+                  key={item.id}
+                  className="p-2 px-4 flex gap-4 rounded-md my-shadow-md justify-start items-center cursor-pointer"
+                >
+                  <div className="rounded-full h-10 w-10 text-xl p-2 flex justify-center items-center bg-gray-100">
+                    <AiTwotoneFolderAdd />
+                  </div>
+                  <div className="flex flex-col">
+                    <h4 className="font-semibold text-[0.9rem]">{item.name}</h4>
+                    <small className="font-thin text-xs">
+                      {Number(i) === 0 || Number(i) === 2 ? "10mb" : "240mb"}
+                    </small>
+                  </div>
                 </div>
-                <div className="flex flex-col">
-                  <h4 className="font-semibold text-[0.9rem]">{item.name}</h4>
-                  <small className="font-thin text-xs">
-                    {Number(i) === 0 || Number(i) === 2 ? "10mb" : "240mb"}
-                  </small>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-        <section className="flex flex-col w-full gap-2 justify-center items-start">
-          <h3 className="text-2xl font-semibold">Files</h3>
-          <div className="grid gap-4 custom-grid-columns-2 w-full">
-            {fileData.map((item, i) => (
-              <FileCard item={item} key={item.id} />
-            ))}
-          </div>
-        </section>
+              ))}
+            </div>
+          </section>
+        )}
+        {fileData.length > 0 && (
+          <section className="flex flex-col w-full gap-2 justify-center items-start">
+            <h3 className="text-2xl font-semibold">Files</h3>
+            <div className="grid gap-4 custom-grid-columns-2 w-full">
+              {fileData.map((item, i) => (
+                <FileCard item={item} key={item.id} />
+              ))}
+            </div>
+          </section>
+        )}
       </div>
       <Modal />
     </main>
