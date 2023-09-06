@@ -17,9 +17,10 @@ import {IoIosPrint} from "react-icons/io";
 import Modal from "@/components/Modal";
 import FileCard from "@/components/FileCard";
 import Link from "next/link";
+import Spinner from "@/components/Spinner";
 
 export default function Home() {
-  const {data} = useAppSelector((state) => state.AppReducer);
+  const {data, isLoading} = useAppSelector((state) => state.AppReducer);
   const dispatch = useAppDispatch();
   const [isSortOpen, setIsSortOpen] = useState(false);
   const [sortByTime, setSortByTime] = useState(false);
@@ -62,6 +63,8 @@ export default function Home() {
   }, []);
   return (
     <main className="p-4 md:p-8 lg:p-16">
+      {isLoading && <Spinner />}
+
       <div className="flex flex-col w-full gap-4 justify-center items-center">
         <section className="flex justify-between items-center w-full">
           <div className="relative" ref={sortCardRef}>
